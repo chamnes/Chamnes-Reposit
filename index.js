@@ -4,16 +4,19 @@ var app = express();
 
 const PORT = process.env.SERVER_PORT;
 
-const pgp = require('pg-promise')(/* options */)
-const db = pgp('postgres://uaykdeachphmq477qihr:oEYmQyGTZwet69srUPsDPlJMy4irOG@bkl4kp4n4z4ybkhhavrf-postgresql.services.clever-cloud.com:50013/bkl4kp4n4z4ybkhhavrf')
+var router = express.Router();
 
-db.one('SELECT $1 AS value', 123)
-  .then((data) => {
-    console.log('DATA:', data.value)
-  })
-  .catch((error) => {
-    console.log('ERROR:', error)
-  })
+var db = require('../queries');
+
+
+router.get('/api/puppies', db.getAllPuppies);
+router.get('/api/puppies/:id', db.getSinglePuppy);
+router.post('/api/puppies', db.createPuppy);
+router.put('/api/puppies/:id', db.updatePuppy);
+router.delete('/api/puppies/:id', db.removePuppy);
+
+
+module.exports = router;
 
 const menus = [
   { name: 'Vanilla', description: 'A plain vanilla ice cream' },
