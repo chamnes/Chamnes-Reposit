@@ -12,11 +12,7 @@ var db = pgp(connectionString);
 // add query functions
 
 module.exports = {
-  getAllPuppies: getAllPuppies,
-  getSinglePuppy: getSinglePuppy,
-  createPuppy: createPuppy,
-  updatePuppy: updatePuppy,
-  removePuppy: removePuppy
+  getAllPuppies: getAllPuppies
 };
 
 function getAllPuppies(req, res, next) {
